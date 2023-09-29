@@ -12,8 +12,13 @@
     <title>Contacts Data</title>
 </head>
 <body>
-    <h2>All contacts here</h2>
+    <h2>All Active contacts here</h2>
     <c:forEach var="contact" items="${ACTIVE_CONTACT_LIST}">
+        ${contact} <br />
+    </c:forEach>
+
+    <h2>All Archieved contacts here</h2>
+    <c:forEach var="contact" items="${ARCHIEVED_CONTACT_LIST}">
         ${contact} <br />
     </c:forEach>
 </body>

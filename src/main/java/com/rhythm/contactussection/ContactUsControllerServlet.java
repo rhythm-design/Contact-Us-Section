@@ -35,12 +35,26 @@ public class ContactUsControllerServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        listContactDetails(req,resp);
-//        addContactDetailsToDatabase(req,resp);
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        System.out.println("here");
+//        String command = req.getParameter("command");
+//
+//        if(command == null) command = "list";
+//        switch (command){
+//            case "add":
+//                addContactDetailsToDatabase(req,resp);
+//                break;
+//            default:
+//                listContactDetails(req,resp);
+//
+//        }
+        contactDBUtil.moveContactsFromActiveToArchived(26);
     }
 
-    private void addContactDetailsToDatabase(HttpServletRequest req, HttpServletResponse resp) {
+    private void addContactDetailsToDatabase(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+
+
         // Step-1 Get the data entered in form
         String fullName = req.getParameter("full_name");
         String email = req.getParameter("email");
@@ -49,6 +63,8 @@ public class ContactUsControllerServlet extends HttpServlet {
         // Step-2 Make a contact from form data and forward add request to ContactDBUtil
         Contact contact = new Contact(fullName, email, message);
         contactDBUtil.addContactToDatabase(contact);
+
+        resp.sendRedirect("/ContactUsSection/contact-us.jsp");
 
         // TODO: May need to redirect to home page as per use case....
     }
@@ -64,7 +80,7 @@ public class ContactUsControllerServlet extends HttpServlet {
         req.setAttribute("ARCHIEVED_CONTACT_LIST", archievedContactsList);
 
         // Step-3 Send the data to JSP page for awesome view
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/all-contacts-data.jsp");
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/admin-dashboard.jsp");
         requestDispatcher.forward(req,resp);
     }
 }

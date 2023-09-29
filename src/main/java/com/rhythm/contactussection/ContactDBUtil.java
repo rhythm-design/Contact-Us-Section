@@ -2,6 +2,7 @@ package com.rhythm.contactussection;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -49,10 +50,59 @@ public class ContactDBUtil {
     }
 
     public void addContactToDatabase(Contact contact){
+        String sqlQuery = "INSERT INTO activecontacts " +
+                "(full_name, email, message) " +
+                "VALUES(?,?,?)";
+        Connection connection = null;
+        PreparedStatement statement = null;
+        try{
+            connection = dataSource.getConnection();
+            statement = connection.prepareStatement(sqlQuery);
 
+            statement.setString(1, contact.getFullName());
+            statement.setString(2, contact.getEmail());
+            statement.setString(3, contact.getMessage());
+            statement.execute();
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally {
+            try {
+                statement.close();
+                connection.close();
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+        }
     }
 
-    public void moveContactsFromActiveToArchived(Contact contact){
+    public void moveContactsFromActiveToArchived(long id){
         // contact id
+        String moveSqlQuery = "INSERT INTO archievedcontacts (full_name, email, message)" +
+                " SELECT full_name, email, message " +
+                "FROM activecontacts " +
+                "WHERE id=" + id + ";";
+
+        String deleteSqlQuery = "DELETE FROM activecontacts " +
+                "WHERE id=" + id + ";";
+//        System.out.println(moveSqlQuery);
+//        System.out.println(deleteSqlQuery);
+        Connection connection = null;
+        Statement statement = null;
+        try{
+            connection = dataSource.getConnection();
+            statement = connection.createStatement();
+            statement.execute(moveSqlQuery);
+            statement.execute(deleteSqlQuery);
+        }catch(Exception e){
+            e.printStackTrace();
+        }finally {
+            try {
+                statement.close();
+                connection.close();
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+
     }
 }
