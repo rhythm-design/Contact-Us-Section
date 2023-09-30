@@ -75,15 +75,16 @@ public class ContactDBUtil {
         }
     }
 
-    public void moveContactsFromActiveToArchived(long id){
+    public void moveContactFromTableToTableById(String fromTable, String toTable, long id){
         // contact id
-        String moveSqlQuery = "INSERT INTO archievedcontacts (full_name, email, message)" +
-                " SELECT full_name, email, message " +
-                "FROM activecontacts " +
-                "WHERE id=" + id + ";";
+        String moveSqlQuery = "INSERT INTO " + toTable + " (full_name, email, message)" +
+                " SELECT full_name, email, message FROM " +
+                fromTable+
+                " WHERE id=" + id + ";";
+        System.out.println(moveSqlQuery);
 
-        String deleteSqlQuery = "DELETE FROM activecontacts " +
-                "WHERE id=" + id + ";";
+        String deleteSqlQuery = "DELETE FROM " + fromTable +
+                " WHERE id=" + id + ";";
 //        System.out.println(moveSqlQuery);
 //        System.out.println(deleteSqlQuery);
         Connection connection = null;

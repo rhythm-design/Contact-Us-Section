@@ -42,7 +42,12 @@ public class AdminDashboardServlet extends HttpServlet {
         HttpSession session = req.getSession(false);
         // session != null && session.getAttribute("loggedIn") != null && (boolean) session.getAttribute("loggedIn")
         if (session != null && session.getAttribute("adminLoggedIn") != null && (boolean) session.getAttribute("adminLoggedIn")) {
-            listContactDetails(req,resp);
+            String command = req.getParameter("command");
+            if(command == null){
+                listContactDetails(req,resp);
+            }else {
+                moveContacts(req,resp);
+            }
         } else {
             resp.sendRedirect(req.getContextPath() + "/admin/login");
         }
@@ -61,5 +66,13 @@ public class AdminDashboardServlet extends HttpServlet {
         // Step-3 Send the data to JSP page for awesome view
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/admin-dashboard.jsp");
         requestDispatcher.forward(req,resp);
+    }
+
+    private void moveContacts(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        String fromTable = req.getParameter("fromTable");
+        String toTable = req.getParameter("toTable");
+        long id = Long.parseLong(req.getParameter("contactIdUnique"));
+        contactDBUtil.moveContactFromTableToTableById(fromTable, toTable, id);
+        resp.sendRedirect(req.getContextPath() + "/admin/contactus/requests");
     }
 }
