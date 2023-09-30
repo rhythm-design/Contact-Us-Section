@@ -26,23 +26,24 @@
                         <c:param name="toTable" value="archievedcontacts" />
                         <c:param name="contactIdUnique" value="${contact.id}"/>
                     </c:url>
+                    <c:url var="singleContactDetail" value="singlecontact">
+                        <c:param name="full_name" value="${contact.fullName}" />
+                        <c:param name="email" value="${contact.email}" />
+                        <c:param name="message" value="${contact.message}" />
+                        <c:param name="contactid" value="${contact.id}" />
+                    </c:url>
                     <tr>
                         <td>${contact.fullName}</td>
                         <td>${contact.email}</td>
                         <td>${contact.message}</td>
                         <td>
-                            <a href="${contactDetailsLink}">Archieve</a>
+                            <a href="${contactDetailsLink}"><button>Archieve</button></a>
                         </td>
-                        <td>View</td>
+                        <td>
+                            <a href="${singleContactDetail}"><button>View</button></a>
+                        </td>
                     </tr>
                 </c:forEach>
-                <tr>
-                    <th scope="row"></th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
             </tbody>
         </table>
     </div>
@@ -57,26 +58,26 @@
                     <th scope="col">Email</th>
                     <th scope="col">Message</th>
                     <th scope="col">Update</th>
-                    <th scope="col">view</th>
                 </tr>
             </thead>
             <tbody>
                 <c:forEach var="contact" items="${ARCHIEVED_CONTACT_LIST}">
+                    <c:url var="contactDetailsLink" value="requests">
+                        <c:param name="command" value="archieve" />
+                        <c:param name="fromTable" value="archievedcontacts" />
+                        <c:param name="toTable" value="activecontacts" />
+                        <c:param name="contactIdUnique" value="${contact.id}"/>
+                    </c:url>
+
                     <tr>
                         <td>${contact.fullName}</td>
                         <td>${contact.email}</td>
                         <td>${contact.message}</td>
-                        <td>${contact.id}</td>
-                        <td>View</td>
+                        <td>
+                            <a href="${contactDetailsLink}"><button>Active</button></a>
+                        </td>
                     </tr>
                 </c:forEach>
-                <tr>
-                    <th scope="row"></th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
             </tbody>
         </table>
     </div>

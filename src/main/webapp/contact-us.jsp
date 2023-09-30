@@ -12,7 +12,7 @@
       <p class="heading-line"> Please fill this form in decent manner</p>
     </div>
     <div class="form-div">
-      <form action="ContactUsControllerServlet" method="post">
+      <form action="contactus" method="post">
         <input type="hidden" name="command" value="add">
 
         <p class="form-label">Full Name: <span class="field-important">*</span> </p> 
@@ -23,7 +23,7 @@
         <p class="email-type-label">example@example.com</p>  
         
         <p class="form-label">Message: <span class="field-important">*</span></p>      
-        <textarea name="message" class="feedback-input" placeholder="Message" required></textarea>
+        <textarea name="message" class="feedback-input" placeholder="Message" required maxlength="300"></textarea>
         
         <div class="submit-area">
           <input type="submit" value="SUBMIT"/>

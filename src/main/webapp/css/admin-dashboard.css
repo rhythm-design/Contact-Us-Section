@@ -4,3 +4,28 @@
     overflow-y: scroll;
     border: 1px solid #ccc; /* Add a border for better visualization */
 }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+tr:nth-child(even){
+    background-color: #ddd;
+}
+
+td{
+    text-align: center;
+}
+
+th {
+    background-color: #f2f2f2; /* Header background color */
+}
+
+/* Add this CSS to your existing stylesheet */
+td {
+    max-width: 100px; /* Set the maximum width for the cells */
+    white-space: nowrap; /* Prevent text from wrapping to the next line */
+    overflow: hidden; /* Hide overflowing content */
+    text-overflow: ellipsis; /* Add ellipsis (...) for overflow */
+}

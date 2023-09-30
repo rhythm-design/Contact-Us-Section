@@ -13,7 +13,7 @@ import javax.sql.DataSource;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/ContactUsControllerServlet")
+@WebServlet("/contactus")
 public class ContactUsControllerServlet extends HttpServlet {
 
     private ContactDBUtil contactDBUtil;
@@ -36,23 +36,17 @@ public class ContactUsControllerServlet extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        System.out.println("here");
-//        String command = req.getParameter("command");
-//
-//        if(command == null) command = "list";
-//        switch (command){
-//            case "add":
-//                addContactDetailsToDatabase(req,resp);
-//                break;
-//            default:
-//                listContactDetails(req,resp);
-//
-//        }
-//        contactDBUtil.moveContactsFromActiveToArchived(26);
+        String command = req.getParameter("command");
+        if(command != null){
+            addContactDetailsToDatabase(req,resp);
+        }else{
+            RequestDispatcher requestDispatcher = req.getRequestDispatcher("/contact-us.jsp");
+            requestDispatcher.forward(req,resp);
+        }
+        resp.sendRedirect("contactus");
     }
 
-    private void addContactDetailsToDatabase(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    private void addContactDetailsToDatabase(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 
 
         // Step-1 Get the data entered in form
@@ -64,7 +58,9 @@ public class ContactUsControllerServlet extends HttpServlet {
         Contact contact = new Contact(fullName, email, message);
         contactDBUtil.addContactToDatabase(contact);
 
-        resp.sendRedirect("/ContactUsSection/contact-us.jsp");
+        // Step-3 Send request to process from jsp page
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/contact-us.jsp");
+        requestDispatcher.forward(req,resp);
 
     }
 

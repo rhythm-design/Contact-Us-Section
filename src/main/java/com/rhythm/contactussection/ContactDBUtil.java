@@ -81,12 +81,10 @@ public class ContactDBUtil {
                 " SELECT full_name, email, message FROM " +
                 fromTable+
                 " WHERE id=" + id + ";";
-        System.out.println(moveSqlQuery);
 
         String deleteSqlQuery = "DELETE FROM " + fromTable +
                 " WHERE id=" + id + ";";
-//        System.out.println(moveSqlQuery);
-//        System.out.println(deleteSqlQuery);
+
         Connection connection = null;
         Statement statement = null;
         try{

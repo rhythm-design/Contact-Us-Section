@@ -18,7 +18,6 @@ public class AdminLoginServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String command = req.getParameter("login-action");
-        System.out.println(command);
         if(command != null){
             ServletContext context = getServletContext();
             String contextUsername = context.getInitParameter("username");
@@ -26,7 +25,6 @@ public class AdminLoginServlet extends HttpServlet {
             String username = req.getParameter("username");
             String password = req.getParameter("password");
             if(contextUsername.equals(username) && contextPassword.equals(password)){
-                System.out.println(req.getContextPath());
                 HttpSession session = req.getSession();
                 session.setAttribute("adminLoggedIn",true);
                 resp.sendRedirect("contactus/requests");
