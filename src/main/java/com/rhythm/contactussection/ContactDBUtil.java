@@ -11,7 +11,7 @@ import java.util.List;
 public class ContactDBUtil {
     private DataSource dataSource;
     
-    ContactDBUtil(DataSource dataSource){
+    public ContactDBUtil(DataSource dataSource){
         this.dataSource = dataSource;
     }
 

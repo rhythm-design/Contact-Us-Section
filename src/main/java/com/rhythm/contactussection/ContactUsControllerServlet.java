@@ -49,7 +49,7 @@ public class ContactUsControllerServlet extends HttpServlet {
 //                listContactDetails(req,resp);
 //
 //        }
-        contactDBUtil.moveContactsFromActiveToArchived(26);
+//        contactDBUtil.moveContactsFromActiveToArchived(26);
     }
 
     private void addContactDetailsToDatabase(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -66,21 +66,7 @@ public class ContactUsControllerServlet extends HttpServlet {
 
         resp.sendRedirect("/ContactUsSection/contact-us.jsp");
 
-        // TODO: May need to redirect to home page as per use case....
     }
 
-    private void listContactDetails(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // Step-1 Get data from ContactDBUtil
-        List<Contact> activeContactsList = contactDBUtil.listContactDetails("activecontacts");
 
-        List<Contact> archievedContactsList = contactDBUtil.listContactDetails("archievedcontacts");
-
-        // Step-2 Set attribute to the contactList to make it accessible across session
-        req.setAttribute("ACTIVE_CONTACT_LIST", activeContactsList);
-        req.setAttribute("ARCHIEVED_CONTACT_LIST", archievedContactsList);
-
-        // Step-3 Send the data to JSP page for awesome view
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("/admin-dashboard.jsp");
-        requestDispatcher.forward(req,resp);
-    }
 }
