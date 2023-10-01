@@ -17,7 +17,7 @@ public class ContactDBUtil {
 
     public List<Contact> listContactDetails(String table){
         List<Contact> contacts = new ArrayList<>();
-        String sqlQuery = "SELECT * FROM " + table;
+        String sqlQuery = "SELECT * FROM " + table + " ORDER BY id DESC";
         Connection connection = null;
         Statement statement = null;
         ResultSet resultSet = null;

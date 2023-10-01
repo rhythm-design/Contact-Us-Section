@@ -6,7 +6,7 @@
 </head>
 <body>
 <div style="display: flex; justify-content: center">
-    <a href="requests"><button>Return back to requests</button></a>
+    <a href="requests"><button class="top-btn" id="top-btn">Return back to requests</button></a>
 </div>
 <div class="contact-form">
     <div class="form-title">
@@ -20,14 +20,13 @@
             <input type="hidden" name="fromTable" value="activecontacts" />
             <input type="hidden" name="toTable" value="archievedcontacts" />
 
-            <p class="form-label">Full Name: <span class="field-important">*</span> </p>
+            <p class="form-label">Full Name:  </p>
             <input name="full_name" type="text" class="feedback-input" value="${requestScope.full_name}" readonly/>
 
-            <p class="form-label">Email: <span class="field-important">*</span></p>
+            <p class="form-label">Email: </p>
             <input name="email" type="email" class="feedback-input" value="${requestScope.email}" readonly/>
-            <p class="email-type-label">example@example.com</p>
 
-            <p class="form-label">Message: <span class="field-important">*</span></p>
+            <p class="form-label">Message: </p>
             <textarea name="message" class="feedback-input" readonly>${requestScope.message}</textarea>
 
             <div class="submit-area">

@@ -6,6 +6,9 @@
     <title>Contacts Data</title>
 </head>
 <body>
+    <div class="all-functions">
+        <a href="${pageContext.request.contextPath}"> <button class="btn1">Home</button> </a>
+    </div>
     <h2>Active contacts</h2>
     <div id="table-container" tabindex="0">
         <table>
@@ -37,10 +40,10 @@
                         <td>${contact.email}</td>
                         <td>${contact.message}</td>
                         <td>
-                            <a href="${contactDetailsLink}"><button>Archieve</button></a>
+                            <a href="${contactDetailsLink}"><button id="linked-btn">Archieve</button></a>
                         </td>
                         <td>
-                            <a href="${singleContactDetail}"><button>View</button></a>
+                            <a href="${singleContactDetail}"><button id="linked-btn">View</button></a>
                         </td>
                     </tr>
                 </c:forEach>
@@ -74,7 +77,7 @@
                         <td>${contact.email}</td>
                         <td>${contact.message}</td>
                         <td>
-                            <a href="${contactDetailsLink}"><button>Active</button></a>
+                            <a href="${contactDetailsLink}"><button id="linked-btn">Active</button></a>
                         </td>
                     </tr>
                 </c:forEach>

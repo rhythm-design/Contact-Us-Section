@@ -5,7 +5,9 @@
     <title>Title</title>
 </head>
 <body>
-  <!-- change names if input fields -->
+  <div class="all-functions">
+    <a href="${pageContext.request.contextPath}"> <button class="btn">Home</button> </a>
+  </div>
   <div class="contact-form">
     <div class="form-title">
       <h1 class="heading"> Contact Us</h1>
@@ -26,7 +28,7 @@
         <textarea name="message" class="feedback-input" placeholder="Message" required maxlength="300"></textarea>
         
         <div class="submit-area">
-          <input type="submit" value="SUBMIT"/>
+          <input type="submit" value="SUBMIT" id="submit-btn"/>
         </div>
         
       </form>

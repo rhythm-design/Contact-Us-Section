@@ -75,8 +75,12 @@ textarea {
     resize:vertical;
     margin-bottom: 10%;
 }
+#top-btn{
+    width: 100%;
+    margin-top: 5%;
+}
 
-[type="submit"] {
+.top-btn, [type="submit"] {
     width: 20%;
     height: 50px;
     background:#575656;

@@ -6,6 +6,9 @@
     <title>Title</title>
 </head>
 <body>
+    <div class="all-functions">
+        <a href="${pageContext.request.contextPath}"> <button class="btn1">Home</button> </a>
+    </div>
     <div class="container">
         <h1>Login</h1>
             <c:if test="${not empty errorMessage}">
